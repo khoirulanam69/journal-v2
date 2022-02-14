@@ -52,7 +52,7 @@
             <br>
             <p class="card-title">KEPALA RUMAH SAKIT</p>
             <br><br><br>
-            <b style="text-decoration: underline;">SAJI PURBORETNO</b>
+            <b style="text-decoration: underline;">ANDRE SETYAWAN C.N.</b>
         </div>
         <div style="width: 12em;">
             <p style="font-size: 1.1em">Turen, {{$jurnal->tgl_jurnal}}</p>

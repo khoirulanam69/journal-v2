@@ -52,19 +52,19 @@
     </table>
     <div class="d-flex justify-content-evenly">
         <div class="text-center" style="min-width: 12em;">
-        <br>
+            <br>
             <p class="card-title">KEPALA RUMAH SAKIT</p>
             <br><br><br>
-            <b style="text-decoration: underline;">SAJI PURBORETNO</b>
+            <b style="text-decoration: underline;">ANDRE SETYAWAN C.N.</b>
         </div>
         <div class="text-center" style="min-width: 12em;">
-        <br>
+            <br>
             <p class="card-title">KABID ADMINKU & SDM</p>
             <br><br><br>
             <b style="text-decoration: underline;">TEGUH MULYO WIDODO</b>
         </div>
         <div class="text-center" style="min-width: 12em;">
-        <br>
+            <br>
             <p class="card-title">PJ. KEUANGAN</p>
             <br><br><br>
             <b style="text-decoration: underline;">RINA FITRI LIAWATI</b>

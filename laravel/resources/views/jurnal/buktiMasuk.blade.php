@@ -55,7 +55,7 @@
             <br>
             <p class="card-title">KEPALA RUMAH SAKIT</p>
             <br><br><br>
-            <b style="text-decoration: underline;">SAJI PURBORETNO</b>
+            <b style="text-decoration: underline;">ANDRE SETYAWAN C.N.</b>
         </div>
         <div style="min-width: 12em;">
             <br>
