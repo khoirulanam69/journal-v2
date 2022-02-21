@@ -92,8 +92,8 @@
             <tr style="text-align: center;">
                 <th>KODE AKUN</th>
                 <th>NAMA AKUN</th>
-                <th>DEBET</th>
-                <th>KREDIT</th>
+                <th>DEBET (Rp)</th>
+                <th>KREDIT (Rp)</th>
             </tr>
         </thead>
         <tbody>
@@ -102,12 +102,12 @@
                 <td class="p-0 text-center">{{$detailjurnal['kd_rek']}}</td>
                 <td class="p-0 text-center">{{$detailjurnal['nm_rek']}}</td>
                 @if($detailjurnal['debet']>0)
-                <td class="text-end p-0" style="width:13rem;">Rp. {{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
+                <td class="text-end p-0" style="width:13rem;">{{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
                 @else
                 <td class="text-end p-0" style="width:13rem;"></td>
                 @endif
                 @if($detailjurnal['kredit']>0)
-                <td class="text-end p-0" style="width:13rem;">Rp. {{number_format($detailjurnal['kredit'], 2, ",", ".");}}</td>
+                <td class="text-end p-0" style="width:13rem;">{{number_format($detailjurnal['kredit'], 2, ",", ".");}}</td>
                 @else
                 <td class="text-end p-0" style="width:13rem;"></td>
                 @endif
