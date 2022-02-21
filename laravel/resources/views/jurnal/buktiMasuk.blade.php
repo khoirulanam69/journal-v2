@@ -91,6 +91,7 @@
         <thead>
             <tr style="text-align: center;">
                 <th>KODE AKUN</th>
+                <th>NAMA AKUN</th>
                 <th>DEBET</th>
                 <th>KREDIT</th>
             </tr>
@@ -99,6 +100,7 @@
             @foreach($detailjurnal as $detailjurnal)
             <tr>
                 <td class="p-0 text-center">{{$detailjurnal['kd_rek']}}</td>
+                <td class="p-0 text-center">{{$detailjurnal['nm_rek']}}</td>
                 @if($detailjurnal['debet']>0)
                 <td class="text-end p-0" style="width:13rem;">Rp. {{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
                 @else

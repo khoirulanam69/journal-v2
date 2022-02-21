@@ -88,6 +88,7 @@ class JurnalController extends Controller
         $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
             ->where('jurnal.no_jurnal', $noJurnal)->first();
         $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
+            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
             ->where('jurnal.no_jurnal', $noJurnal)
             ->get();
         $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
@@ -106,6 +107,7 @@ class JurnalController extends Controller
         $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
             ->where('jurnal.no_jurnal', $noJurnal)->first();
         $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
+            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
             ->where('jurnal.no_jurnal', $noJurnal)
             ->get();
         $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
@@ -125,6 +127,7 @@ class JurnalController extends Controller
         $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
             ->where('jurnal.no_jurnal', $noJurnal)->first();
         $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
+            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
             ->where('jurnal.no_jurnal', $noJurnal)
             ->get();
         $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
