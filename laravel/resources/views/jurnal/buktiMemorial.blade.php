@@ -75,7 +75,7 @@
     <table class="table table-bordered" style="border-color: #000;" width="100%">
         <thead>
             <tr class="text-center">
-                <th>No. SANDI</th>
+                <th>KODE AKUN</th>
                 <th>DEBET</th>
                 <th>KREDIT</th>
             </tr>
