@@ -14,9 +14,6 @@ p{
 .jurnal-detail td{
     padding: 8px;
 }
-.jurnal-detail td:first-child{
-    min-width: 12em;
-}
 .jurnal-detail textarea, .jurnal-detail input{
     width: 100%;
     border: none;

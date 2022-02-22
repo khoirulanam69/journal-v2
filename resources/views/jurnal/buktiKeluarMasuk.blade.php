@@ -17,7 +17,7 @@
     <p class="text-center" style="font-size: 1.4em;">No. : {{$jurnal->no_jurnal}}</p>
     <table class="table" style="border-color: transparent;">
         <tr>
-            <td>Dibayarkan kepada</td>
+            <td>{{$ketbayar}}</td>
             <td>:</td>
             <td><input type="text" placeholder="?"></td>
         </tr>
@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <td colspan="2">Tanggal Dibukukan : {{$jurnal->tgl_jurnal}}</td>
-                <td style="width:13rem;">Paraf : </td>
+                <td style="width:15%;">Paraf : </td>
             </tr>
         </tbody>
     </table>
@@ -99,17 +99,17 @@
         <tbody>
             @foreach($detailjurnal as $detailjurnal)
             <tr>
-                <td class="p-0 text-center">{{$detailjurnal['kd_rek']}}</td>
+                <td class="p-0 text-center" style="width:15%;">{{$detailjurnal['kd_rek']}}</td>
                 <td class="p-0 text-center">{{$detailjurnal['nm_rek']}}</td>
                 @if($detailjurnal['debet']>0)
-                <td class="text-end p-0" style="width:13rem;">{{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
+                <td class="text-end p-0" style="width:15%;">{{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
                 @else
-                <td class="text-end p-0" style="width:13rem;"></td>
+                <td class="text-end p-0" style="width:15%;"></td>
                 @endif
                 @if($detailjurnal['kredit']>0)
-                <td class="text-end p-0" style="width:13rem;">{{number_format($detailjurnal['kredit'], 2, ",", ".");}}</td>
+                <td class="text-end p-0" style="width:15%;">{{number_format($detailjurnal['kredit'], 2, ",", ".");}}</td>
                 @else
-                <td class="text-end p-0" style="width:13rem;"></td>
+                <td class="text-end p-0" style="width:15%;"></td>
                 @endif
             </tr>
             @endforeach

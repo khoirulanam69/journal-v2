@@ -102,7 +102,7 @@ class JurnalController extends Controller
         return view('jurnal.buktiMemorial', $data);
     }
 
-    public function buktiKeluar($noJurnal, $title)
+    public function buktiKeluarMasuk($noJurnal, $title)
     {
         $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
             ->where('jurnal.no_jurnal', $noJurnal)->first();
@@ -112,34 +112,24 @@ class JurnalController extends Controller
             ->get();
         $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
         $terbilang = terbilang($total[0]->debet);
+        if ($title == 'bukti kas masuk') {
+            $ketbayar = 'Diterima Dari';
+        } else if ($title == 'bukti kas masuk') {
+            $ketbayar = 'Dibayarkan Kepada';
+        } else if ($title == 'bukti bank masuk') {
+            $ketbayar = 'Diterima Dari';
+        } else {
+            $ketbayar = 'Dibayarkan Kepada';
+        }
         $data = [
             'jurnal' => $jurnal,
             'detailjurnal' => $detailJurnal,
             'total' => $total,
             'terbilang' => $terbilang,
-            'tableTitle' => $title
+            'tableTitle' => $title,
+            'ketbayar' => $ketbayar
         ];
-        return view('jurnal.buktiKeluar', $data);
-    }
-
-    public function buktiMasuk($noJurnal, $title)
-    {
-        $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
-            ->where('jurnal.no_jurnal', $noJurnal)->first();
-        $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
-            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
-            ->where('jurnal.no_jurnal', $noJurnal)
-            ->get();
-        $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
-        $terbilang = terbilang($total[0]->debet);
-        $data = [
-            'jurnal' => $jurnal,
-            'detailjurnal' => $detailJurnal,
-            'total' => $total,
-            'terbilang' => $terbilang,
-            'tableTitle' => $title
-        ];
-        return view('jurnal.buktiMasuk', $data);
+        return view('jurnal.buktiKeluarMasuk', $data);
     }
 }
 
