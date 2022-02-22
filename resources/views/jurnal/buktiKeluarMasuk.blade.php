@@ -37,10 +37,16 @@
             <td>{{$jurnal->keterangan}}</td>
         </tr>
         <tr>
-            <td>Bukti Pendukung</td>
+            <td>No Bukti</td>
             <td>:</td>
             <td>
                 <p>No. {{$jurnal->no_bukti}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>Bukti Pendukung</td>
+            <td>:</td>
+            <td>
                 <textarea placeholder="?"></textarea>
             </td>
         </tr>
@@ -83,7 +89,7 @@
             </tr>
             <tr>
                 <td colspan="2">Tanggal Dibukukan : {{$jurnal->tgl_jurnal}}</td>
-                <td style="width:15%;">Paraf : </td>
+                <td style="width:220px;">Paraf : </td>
             </tr>
         </tbody>
     </table>
@@ -100,16 +106,16 @@
             @foreach($detailjurnal as $detailjurnal)
             <tr>
                 <td class="p-0 text-center" style="width:15%;">{{$detailjurnal['kd_rek']}}</td>
-                <td class="p-0 text-center">{{$detailjurnal['nm_rek']}}</td>
+                <td class="p-0">{{$detailjurnal['nm_rek']}}</td>
                 @if($detailjurnal['debet']>0)
-                <td class="text-end p-0" style="width:15%;">{{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
+                <td class="text-end p-0" style="width:110px;">{{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
                 @else
-                <td class="text-end p-0" style="width:15%;"></td>
+                <td class="text-end p-0" style="width:110px;"></td>
                 @endif
                 @if($detailjurnal['kredit']>0)
-                <td class="text-end p-0" style="width:15%;">{{number_format($detailjurnal['kredit'], 2, ",", ".");}}</td>
+                <td class="text-end p-0" style="width:110px;">{{number_format($detailjurnal['kredit'], 2, ",", ".");}}</td>
                 @else
-                <td class="text-end p-0" style="width:15%;"></td>
+                <td class="text-end p-0" style="width:110px;"></td>
                 @endif
             </tr>
             @endforeach

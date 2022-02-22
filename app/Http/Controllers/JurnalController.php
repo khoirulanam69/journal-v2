@@ -21,6 +21,61 @@ class JurnalController extends Controller
         return view('jurnal.jurnal', $data);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Jurnal  $jurnal
+     * @return \Illuminate\Http\Response
+     */
+    public function buktiMemorial($noJurnal)
+    {
+        $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
+            ->where('jurnal.no_jurnal', $noJurnal)->first();
+        $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
+            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
+            ->where('jurnal.no_jurnal', $noJurnal)
+            ->get();
+        $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
+        $terbilang = terbilang($total[0]->debet);
+        $data = [
+            'jurnal' => $jurnal,
+            'detailjurnal' => $detailJurnal,
+            'total' => $total,
+            'terbilang' => $terbilang
+        ];
+        return view('jurnal.buktiMemorial', $data);
+    }
+
+    public function buktiKeluarMasuk($noJurnal, $title)
+    {
+        $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
+            ->where('jurnal.no_jurnal', $noJurnal)->first();
+        $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
+            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
+            ->where('jurnal.no_jurnal', $noJurnal)
+            ->get();
+        $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
+        $terbilang = terbilang($total[0]->debet);
+        if ($title == 'bukti kas masuk') {
+            $ketbayar = 'Diterima Dari';
+        } else if ($title == 'bukti kas masuk') {
+            $ketbayar = 'Dibayarkan Kepada';
+        } else if ($title == 'bukti bank masuk') {
+            $ketbayar = 'Diterima Dari';
+        } else {
+            $ketbayar = 'Dibayarkan Kepada';
+        }
+        $data = [
+            'jurnal' => $jurnal,
+            'detailjurnal' => $detailJurnal,
+            'total' => $total,
+            'terbilang' => $terbilang,
+            'tableTitle' => $title,
+            'ketbayar' => $ketbayar
+        ];
+        return view('jurnal.buktiKeluarMasuk', $data);
+    }
+
     public function search()
     {
         $jurnals = Jurnal::where('no_jurnal', 'like', '%' . request('search') . '%')
@@ -75,61 +130,6 @@ class JurnalController extends Controller
         $output .= '</tbody>
                 </table>';
         return $output;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Jurnal  $jurnal
-     * @return \Illuminate\Http\Response
-     */
-    public function buktiMemorial($noJurnal)
-    {
-        $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
-            ->where('jurnal.no_jurnal', $noJurnal)->first();
-        $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
-            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
-            ->where('jurnal.no_jurnal', $noJurnal)
-            ->get();
-        $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
-        $terbilang = terbilang($total[0]->debet);
-        $data = [
-            'jurnal' => $jurnal,
-            'detailjurnal' => $detailJurnal,
-            'total' => $total,
-            'terbilang' => $terbilang
-        ];
-        return view('jurnal.buktiMemorial', $data);
-    }
-
-    public function buktiKeluarMasuk($noJurnal, $title)
-    {
-        $jurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
-            ->where('jurnal.no_jurnal', $noJurnal)->first();
-        $detailJurnal = Jurnal::join('detailjurnal', 'detailjurnal.no_jurnal', '=', 'jurnal.no_jurnal')
-            ->join('rekening', 'rekening.kd_rek', '=', 'detailjurnal.kd_rek')
-            ->where('jurnal.no_jurnal', $noJurnal)
-            ->get();
-        $total = DB::select('SELECT SUM(debet) AS debet FROM jurnal JOIN detailjurnal USING(no_jurnal) WHERE no_jurnal = "' . $noJurnal . '" GROUP BY no_jurnal');
-        $terbilang = terbilang($total[0]->debet);
-        if ($title == 'bukti kas masuk') {
-            $ketbayar = 'Diterima Dari';
-        } else if ($title == 'bukti kas masuk') {
-            $ketbayar = 'Dibayarkan Kepada';
-        } else if ($title == 'bukti bank masuk') {
-            $ketbayar = 'Diterima Dari';
-        } else {
-            $ketbayar = 'Dibayarkan Kepada';
-        }
-        $data = [
-            'jurnal' => $jurnal,
-            'detailjurnal' => $detailJurnal,
-            'total' => $total,
-            'terbilang' => $terbilang,
-            'tableTitle' => $title,
-            'ketbayar' => $ketbayar
-        ];
-        return view('jurnal.buktiKeluarMasuk', $data);
     }
 }
 
