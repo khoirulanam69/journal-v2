@@ -14,15 +14,15 @@
         </li>
     </ul>
     <h2 class="text-center text-uppercase mb-0">{{$tableTitle}}</h2>
-    <p class="text-center" style="font-size: 1.4em;">No. : {{$jurnal->no_jurnal}}</p>
+    <p class="text-center" style="font-size: 1.4em;">No. : {{$jurnal->no_bukti}}</p>
     <table class="table" style="border-color: transparent;">
         <tr>
-            <td>{{$ketbayar}}</td>
+            <td style="width: 25%;">{{$ketbayar}}</td>
             <td>:</td>
             <td><input type="text" placeholder="?"></td>
         </tr>
         <tr>
-            <td>Jumlah Transaksi</td>
+            <td style="width: 25%;">Jumlah Transaksi</td>
             <td>:</td>
             <td>Rp. {{number_format($total[0]->debet, 2, ",", ".");}}</td>
         </tr>
@@ -32,26 +32,19 @@
             </td>
         </tr>
         <tr>
-            <td>Untuk Keperluan</td>
+            <td style="width: 25%;">Untuk Keperluan</td>
             <td>:</td>
             <td>{{$jurnal->keterangan}}</td>
         </tr>
         <tr>
-            <td>No Bukti</td>
-            <td>:</td>
-            <td>
-                <p>No. {{$jurnal->no_bukti}}</p>
-            </td>
-        </tr>
-        <tr>
-            <td>Bukti Pendukung</td>
+            <td style="width: 25%;">Bukti Pendukung</td>
             <td>:</td>
             <td>
                 <textarea placeholder="?"></textarea>
             </td>
         </tr>
         <tr>
-            <td>Cara Pembayaran</td>
+            <td style="width: 25%;">Cara Pembayaran</td>
             <td>:</td>
             <td><input type="text" placeholder="?"></td>
         </tr>
@@ -89,7 +82,7 @@
             </tr>
             <tr>
                 <td colspan="2">Tanggal Dibukukan : {{$jurnal->tgl_jurnal}}</td>
-                <td style="width:220px;">Paraf : </td>
+                <td style="width: 34%;">Paraf : </td>
             </tr>
         </tbody>
     </table>
@@ -97,7 +90,6 @@
         <thead>
             <tr style="text-align: center;">
                 <th>KODE AKUN</th>
-                <th>NAMA AKUN</th>
                 <th>DEBET (Rp)</th>
                 <th>KREDIT (Rp)</th>
             </tr>
@@ -105,17 +97,16 @@
         <tbody>
             @foreach($detailjurnal as $detailjurnal)
             <tr>
-                <td class="p-0 text-center" style="width:15%;">{{$detailjurnal['kd_rek']}}</td>
-                <td class="p-0">{{$detailjurnal['nm_rek']}}</td>
-                @if($detailjurnal['debet']>0)
-                <td class="text-end p-0" style="width:110px;">{{number_format($detailjurnal['debet'], 2, ",", ".");}}</td>
+                <td class="text-center p-0">{{$detailjurnal->kd_rek}}</td>
+                @if($detailjurnal->total_debet>0)
+                <td class="text-end p-0">{{number_format($detailjurnal->total_debet, 2, ",", ".");}}</td>
                 @else
-                <td class="text-end p-0" style="width:110px;"></td>
+                <td class="text-end p-0"></td>
                 @endif
-                @if($detailjurnal['kredit']>0)
-                <td class="text-end p-0" style="width:110px;">{{number_format($detailjurnal['kredit'], 2, ",", ".");}}</td>
+                @if($detailjurnal->total_kredit>0)
+                <td class="text-end p-0">{{number_format($detailjurnal->total_kredit, 2, ",", ".");}}</td>
                 @else
-                <td class="text-end p-0" style="width:110px;"></td>
+                <td class="text-end p-0"></td>
                 @endif
             </tr>
             @endforeach

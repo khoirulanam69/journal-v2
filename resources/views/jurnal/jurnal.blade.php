@@ -7,57 +7,49 @@
     <h1 class="text-center">Jurnal Bulanan</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="input-group">
-                <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-danger">Search</button>
-            </div>
+            <form>
+                <div class="input-group">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Search...">
+                    <button type="submit" class="btn btn-danger">Search</button>
+                </div>
+            </form>
+            <h5>Masukkan kode no bukti untuk cetak</h5>
         </div>
     </div>
     <div id="listdata"></div>
     <table class="table" id="table">
         <thead>
             <tr>
-                <th>No. Journal</th>
                 <th>No. Bukti</th>
-                <th>Tanggal</th>
-                <th>Keterangan</th>
-                <th>Cetak Bukti</th>
+                <th class="text-end">Cetak Bukti</th>
             </tr>
         </thead>
         <tbody>
             @foreach($jurnals as $jurnal)
             <tr>
-                <td>{{$jurnal->no_jurnal}}</td>
                 <td>{{$jurnal->no_bukti}}</td>
-                <td style="width: 100px;">{{$jurnal->tgl_jurnal}}</td>
-                <td>{{$jurnal->keterangan}}</td>
-                <td style="width: 250px">
-                    <div>
-                        <a href="{{url('/buktimemorial/'.$jurnal->no_jurnal)}}">
-                            <span class="badge rounded-pill bg-primary" style="width: 100px">Memorial</span>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{{url('/buktikasmasuk/'.$jurnal->no_jurnal.'/bukti kas masuk')}}">
-                            <span class="badge rounded-pill" style="background-color: #33d02f; width: 100px">Kas Masuk</span>
-                        </a>
-                        <a href="{{url('/buktikaskeluar/'.$jurnal->no_jurnal.'/bukti kas keluar')}}">
-                            <span class="badge rounded-pill bg-success" style="width: 100px">Kas Keluar</span>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{{url('/buktibankmasuk/'.$jurnal->no_jurnal.'/bukti bank masuk')}}">
-                            <span class="badge rounded-pill" style="background-color: #ef8f10; width: 100px">Bank Masuk</span>
-                        </a>
-                        <a href="{{url('/buktibank/'.$jurnal->no_jurnal.'/bukti bank keluar')}}">
-                            <span class="badge rounded-pill" style="background-color: #d14f2e; width: 100px">Bank Keluar</span>
-                        </a>
-                    </div>
+                <td class="text-end">
+                    <a href="{{url('/buktimemorial/'.$jurnal->no_bukti)}}">
+                        <span class="badge rounded-pill bg-primary" style="width: 100px">Memorial</span>
+                    </a>
+                    <a href="{{url('/buktikasmasuk/'.$jurnal->no_bukti.'/bukti kas masuk')}}">
+                        <span class="badge rounded-pill" style="background-color: #33d02f; width: 100px">Kas Masuk</span>
+                    </a>
+                    <a href="{{url('/buktikaskeluar/'.$jurnal->no_bukti.'/bukti kas keluar')}}">
+                        <span class="badge rounded-pill bg-success" style="width: 100px">Kas Keluar</span>
+                    </a>
+                    <a href="{{url('/buktibankmasuk/'.$jurnal->no_bukti.'/bukti bank masuk')}}">
+                        <span class="badge rounded-pill" style="background-color: #ef8f10; width: 100px">Bank Masuk</span>
+                    </a>
+                    <a href="{{url('/buktibankkeluar/'.$jurnal->no_bukti.'/bukti bank keluar')}}">
+                        <span class="badge rounded-pill" style="background-color: #d14f2e; width: 100px">Bank Keluar</span>
+                    </a>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    {{$jurnals->links()}}
 </div>
 <!-- Modal
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
