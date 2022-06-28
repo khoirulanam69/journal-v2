@@ -32,18 +32,22 @@
                     <a href="{{url('/buktimemorial/'.$jurnal->no_bukti)}}">
                         <span class="badge rounded-pill bg-primary" style="width: 100px">Memorial</span>
                     </a>
-                    <a href="{{url('/buktikasmasuk/'.$jurnal->no_bukti.'/bukti kas masuk')}}">
-                        <span class="badge rounded-pill" style="background-color: #33d02f; width: 100px">Kas Masuk</span>
-                    </a>
-                    <a href="{{url('/buktikaskeluar/'.$jurnal->no_bukti.'/bukti kas keluar')}}">
-                        <span class="badge rounded-pill bg-success" style="width: 100px">Kas Keluar</span>
-                    </a>
-                    <a href="{{url('/buktibankmasuk/'.$jurnal->no_bukti.'/bukti bank masuk')}}">
-                        <span class="badge rounded-pill" style="background-color: #ef8f10; width: 100px">Bank Masuk</span>
-                    </a>
-                    <a href="{{url('/buktibankkeluar/'.$jurnal->no_bukti.'/bukti bank keluar')}}">
-                        <span class="badge rounded-pill" style="background-color: #d14f2e; width: 100px">Bank Keluar</span>
-                    </a>
+                    <div>
+                        <a href="{{url('/buktikasmasuk/'.$jurnal->no_bukti.'/bukti kas masuk')}}">
+                            <span class="badge rounded-pill" style="background-color: #33d02f; width: 100px">Kas Masuk</span>
+                        </a>
+                        <a href="{{url('/buktikaskeluar/'.$jurnal->no_bukti.'/bukti kas keluar')}}">
+                            <span class="badge rounded-pill bg-success" style="width: 100px">Kas Keluar</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{url('/buktibankmasuk/'.$jurnal->no_bukti.'/bukti bank masuk')}}">
+                            <span class="badge rounded-pill" style="background-color: #ef8f10; width: 100px">Bank Masuk</span>
+                        </a>
+                        <a href="{{url('/buktibankkeluar/'.$jurnal->no_bukti.'/bukti bank keluar')}}">
+                            <span class="badge rounded-pill" style="background-color: #d14f2e; width: 100px">Bank Keluar</span>
+                        </a>
+                    </div>
                 </td>
             </tr>
             @endforeach

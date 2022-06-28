@@ -158,16 +158,18 @@ class JurnalController extends Controller
             $output .= '<tr>
                 <td>' . $jurnal->no_bukti . '</td>
                 <td class="text-end">
+                    <a href="' . url('/buktimemorial/' . $jurnal->no_bukti) . '">
+                        <span class="badge rounded-pill bg-primary" style="width: 100px">Memorial</span>
+                    </a>
                     <div>
-                        <a href="' . url('/buktimemorial/' . $jurnal->no_bukti) . '">
-                            <span class="badge rounded-pill bg-primary" style="width: 100px">Memorial</span>
-                        </a>
                         <a href="' . url('/buktikasmasuk/' . $jurnal->no_bukti . '/bukti kas masuk') . '">
                             <span class="badge rounded-pill" style="background-color: #33d02f; width: 100px">Kas Masuk</span>
                         </a>
                         <a href="' . url('/buktikaskeluar/' . $jurnal->no_bukti . '/bukti kas keluar') . '">
                             <span class="badge rounded-pill bg-success" style="width: 100px">Kas Keluar</span>
                         </a>
+                    </div>
+                    <div>
                         <a href="' . url('/buktibankmasuk/' . $jurnal->no_bukti . '/bukti bank masuk') . '">
                             <span class="badge rounded-pill" style="background-color: #ef8f10; width: 100px">Bank Masuk</span>
                         </a>
